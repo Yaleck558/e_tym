@@ -1,10 +1,6 @@
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
+// -------------------------
+// Répertoires de build personnalisés
+// -------------------------
 val newBuildDir: Directory =
     rootProject.layout.buildDirectory
         .dir("../../build")
@@ -15,13 +11,21 @@ subprojects {
     val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
     project.layout.buildDirectory.value(newSubprojectBuildDir)
 }
+
 subprojects {
     project.evaluationDependsOn(":app")
 }
 
+// -------------------------
+// Tâche Clean
+// -------------------------
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
+
+// -------------------------
+// Buildscript avec plugins Android et Kotlin
+// -------------------------
 buildscript {
     repositories {
         google()
@@ -34,6 +38,9 @@ buildscript {
     }
 }
 
+// -------------------------
+// Dépôts pour tous les projets
+// -------------------------
 allprojects {
     repositories {
         google()
