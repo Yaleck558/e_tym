@@ -22,3 +22,4 @@ subprojects {
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
+classpath("com.android.tools.build:gradle:8.5.2")
